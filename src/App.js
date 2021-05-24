@@ -2,8 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Image from 'react-bootstrap/Image';
-import Alert from 'react-bootstrap/Alert';
+import Image from 'react-bootstrap/Image'
 
 class App extends React.Component {
 
@@ -72,18 +71,14 @@ console.log(this.state.locationData);
         {this.state.show &&
 
 
-<Image src={`https://maps.locationiq.com/v3/staticmap?key=k.0070e91c94da8e671b4a2f75afb0072a&center=${this.state.locationData.lat},${this.state.locationData.lon}`}  fluid />
+<Image src={`https://maps.locationiq.com/v3/staticmap?key=pk.0070e91c94da8e671b4a2f75afb0072a&center=${this.state.locationData.lat},${this.state.locationData.lon}`}  fluid />
 
        
         }
 
 {this.state.error &&
-
-  <Alert variant="success">
-  <Alert.Heading><p>error in getting thr data</p></Alert.Heading>
   
-  </Alert>
-
+        <p>error in getting thr data</p>
       } 
 
 
