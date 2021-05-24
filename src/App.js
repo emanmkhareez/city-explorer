@@ -1,5 +1,9 @@
 import React from 'react';
-import axios from 'axios'
+import axios from 'axios';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Image from 'react-bootstrap/Image';
+import Alert from 'react-bootstrap/Alert';
 
 class App extends React.Component {
 
@@ -25,16 +29,33 @@ changeLoc = (event) =>{
 }
   getLoc = async (event) => {
     event.preventDefault();
-    let locUrl = `https://us1.locationiq.com/v1/reverse.php?key=pk.0070e91c94da8e671b4a2f75afb0072a=${this.state.Query}=LONGITUDE&format=json`;
     
+
+    let locUrl = `https://eu1.locationiq.com/v1/search.php?key=pk.0070e91c94da8e671b4a2f75afb0072a&q=${this.state.Query}&format=json`
+
+    try {
+
     let req = await axios.get(locUrl);
-    console.log(req[0]);
+  //  console.log(req[0]);
 this.setState({
-  locationData:locUrl[0],
+  locationData:req.data[0],
   show:true
-})
-console.log(this.state.Query);
+});
+console.log(this.state.locationData);
+
+
+    }
+    catch{
+      this.setState({
+        show:false,
+        error:true
+      })
+    }
+
+  
+
   }
+
   render() {
     return (
       <>
@@ -49,8 +70,22 @@ console.log(this.state.Query);
           <p>{this.state.locationData.display_name}</p>
         </form>
         {this.state.show &&
-        <img src={`https://maps.locationiq.com/v3/staticmap?key=pk.0070e91c94da8e671b4a2f75afb0072a&center=${this.state.locationData.lat},${this.state.locationData.lon}`} alt=''/>
+
+
+<Image src={`https://maps.locationiq.com/v3/staticmap?key=k.0070e91c94da8e671b4a2f75afb0072a&center=${this.state.locationData.lat},${this.state.locationData.lon}`}  fluid />
+
+       
         }
+
+{this.state.error &&
+
+  <Alert variant="success">
+  <Alert.Heading><p>error in getting thr data</p></Alert.Heading>
+  
+  </Alert>
+
+      } 
+
 
       </>
     )
