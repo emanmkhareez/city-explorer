@@ -1,9 +1,9 @@
 import React from 'react';
-import axios from 'axios';
+import axios from 'axios';//npm i axios 
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';//npm i bootstrap
 import Image from 'react-bootstrap/Image';
-import Show from './Show';
+import Show from './Show'
 let weatherMap=[]
 class App extends React.Component {
   constructor(props){
