@@ -86,18 +86,7 @@ class App extends React.Component{
 </Form>
 
  
-    {
-    this.state.weatherData.map((item)=>{
-      return(
-        <Weather
     
-        desc={item}
-    
-        
-        />
-      )
-
-    })}
     
   
 
@@ -142,7 +131,18 @@ table to render info to city */}
 
 
 
+{
+    this.state.weatherData.map((item)=>{
+      return(
+        <Weather
     
+        desc={item}
+    
+        
+        />
+      )
+
+    })}
       </>
     )
   }
