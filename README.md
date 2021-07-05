@@ -24,7 +24,8 @@ and used api location
 
 ## Credit and Collaborations no one 
 
-
+## url to website 
+https://eager-hugle-3e772f.netlify.app/
 
 Name of feature: render cityname,lat,lon
 
