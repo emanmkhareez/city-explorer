@@ -1,5 +1,51 @@
    # City Explorer
+   # City Explorer
 
+**Author**: eman mkhareez
+
+## Overview : 
+
+this application to enable you to retrieve any city in the world and retrieve the map to this city
+
+
+## Getting Started
+
+just write name of the city and click on the button
+
+## Architecture
+
+i am used react app js from react app im used library axios to send request and receive response 
+
+and used api location
+
+## Change Log
+
+4-7-2021 7:5 all function to lab 6 in my app  ready now to used
+
+## Credit and Collaborations no one 
+
+
+
+Name of feature: render cityname,lat,lon
+
+Estimate of time needed to complete: 30 minutes 
+
+Start time: 3
+
+Finish time: 3:45
+
+Actual time needed to complete: 45 minutes
+
+
+Name of feature: render map
+
+Estimate of time needed to complete: 20minutes 
+
+Start time: 3:45
+
+Finish time: 4:10
+
+Actual time needed to complete: 25 minutes
 
 
 # Getting Started with Create React App
