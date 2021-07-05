@@ -4,7 +4,8 @@ import axios from 'axios'//npm i axios
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Table from 'react-bootstrap/Table'
-import {Form,Button} from 'react-bootstrap/'
+import {Form,Button, NavItem} from 'react-bootstrap/'
+import Weather from './Weather'
 
 class App extends React.Component{
   constructor(props){
@@ -14,7 +15,9 @@ class App extends React.Component{
       cityData:{},
       cityName:'',
       showMap:false,
-      errorMessage:false
+      errorMessage:false,
+      weatherData:[]
+
 
     }
   }
@@ -43,10 +46,21 @@ class App extends React.Component{
       errorMessage:true
     })
     
+    
+
 
   }
+  //class7
+  let weatherURl=`${process.env.REACT_APP_SERVER}/weather?cityName=${this.state.cityName}
+  `
+  let weatherRequst= await axios.get(weatherURl)
+  this.setState({
+    weatherData:weatherRequst.data
+  })
+  console.log(this.state.weatherData);
 
  }
+ 
 
 
  
@@ -56,7 +70,7 @@ class App extends React.Component{
       <br></br>
 
        <h1 style={{textAlign:'center'}}>City Explorer</h1>
-
+      
 {/* form to enter city  */}
 
        <Form onSubmit={this.getloc}>
@@ -71,7 +85,23 @@ class App extends React.Component{
   
 </Form>
 
+ 
+    {
+    this.state.weatherData.map((item)=>{
+      return(
+        <Weather
+    
+        desc={item}
+    
+        
+        />
+      )
 
+    })}
+    
+  
+
+  
 
 <br></br>
 <br></br>
