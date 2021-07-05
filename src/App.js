@@ -106,7 +106,7 @@ table to render info to city */}
   </tbody>
 </Table>
 {/* render map to the city */}
-{this.state.showMap&&<img alt='' src={`https://maps.locationiq.com/v3/staticmap?key=pk.0070e91c94da8e671b4a2f75afb0072a&center=${this.state.cityData.lat},${this.state.cityData.lon}`} style={{width:'400px',height:'400px'}} />
+{this.state.showMap&&<img alt='' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_Key}&center=${this.state.cityData.lat},${this.state.cityData.lon}`} style={{width:'400px',height:'400px'}} />
 }
 {this.state.errorMessage&&<div style={{color:'red'}}>Error in getting the data</div>}
 
