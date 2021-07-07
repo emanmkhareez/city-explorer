@@ -16,7 +16,8 @@ class App extends React.Component{
       cityName:'',
       showMap:false,
       errorMessage:false,
-      weatherData:[]
+      weatherData:[],
+      movieaData:[]
 
 
     }
@@ -58,6 +59,15 @@ class App extends React.Component{
     weatherData:weatherRequst.data
   })
   console.log(this.state.weatherData);
+  //class 8
+// http:localhost:3008/movies?city=Amman
+  let moviesURL=`${process.env.REACT_APP_SERVER}/movies?cityName=${this.state.cityName}`
+  let moviesRequst= await axios.get(moviesURL)
+  this.setState({
+    movieaData:moviesRequst.data
+    
+  })
+  console.log(this.state.movieaData);
 
  }
  
