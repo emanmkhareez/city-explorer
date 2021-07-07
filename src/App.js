@@ -54,7 +54,7 @@ class App extends React.Component{
   }
   console.log('after location');
   //class7
-  let weatherURl=`${process.env.REACT_APP_SERVER}/weather?cityName=${this.state.cityName}
+  let weatherURl=`${process.env.REACT_APP_SERVER}weather?cityName=${this.state.cityName}
   
   `
 
@@ -66,7 +66,7 @@ class App extends React.Component{
   console.log(this.state.weatherData);
   //class 8
 // http:localhost:3008/movies?city=Amman
-  let moviesURL=`${process.env.REACT_APP_SERVER}/movies?city=${this.state.cityName}`
+  let moviesURL=`${process.env.REACT_APP_SERVER}movies?city=${this.state.cityName}`
   let moviesRequst= await axios.get(moviesURL)
    await this.setState({
     movieaData:moviesRequst.data
