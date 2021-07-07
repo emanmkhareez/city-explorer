@@ -21,7 +21,7 @@ class Movies extends React.Component{
 return(
          
     <Card style={{ width: '18rem' ,display:'inline-block' }}>
-  <Card.Img variant="top" src="holder.js/100px180" />
+  <Card.Img variant="top" src={items.image_url} />
   <Card.Body>
     <Card.Title>{items.title}</Card.Title>
     <Card.Text>
