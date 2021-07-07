@@ -141,29 +141,25 @@ table to render info to city */}
   </tbody>
 </Table>
 {/* render map to the city */}
-{this.state.showMap&&<img alt='' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_Key}&center=${this.state.cityData.lat},${this.state.cityData.lon}`} style={{width:'400px',height:'400px'}} />
+{this.state.showMap&&
+<img alt='' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_Key}&center=${this.state.cityData.lat},${this.state.cityData.lon}`} style={{width:'400px',height:'400px'}} />
 }
 {this.state.errorMessage&&<div style={{color:'red'}}>Error in getting the data</div>}
 
 
-
-{
-    this.state.weatherData.map((item)=>{
-      return(
-        <Weather
+<Weather
     
-        desc={item}
+    desc={this.state.weatherData}
+
     
-        
-        />
-      )
+    />
 
-    })}
-
+       
+     
  <Movies
     movies={this.state.movieaData}
     />
-   
+    
       </>
     )
   }
