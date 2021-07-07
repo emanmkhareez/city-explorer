@@ -1,7 +1,7 @@
 
 import React from 'react'
 import axios from 'axios'//npm i axios
-
+import Movies from './Movies'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Table from 'react-bootstrap/Table'
 import {Form,Button, NavItem} from 'react-bootstrap/'
@@ -55,15 +55,15 @@ class App extends React.Component{
   let weatherURl=`${process.env.REACT_APP_SERVER}/weather?cityName=${this.state.cityName}
   `
   let weatherRequst= await axios.get(weatherURl)
-  this.setState({
+   await this.setState({
     weatherData:weatherRequst.data
   })
   console.log(this.state.weatherData);
   //class 8
 // http:localhost:3008/movies?city=Amman
-  let moviesURL=`${process.env.REACT_APP_SERVER}/movies?cityName=${this.state.cityName}`
+  let moviesURL=`${process.env.REACT_APP_SERVER}/movies?city=${this.state.cityName}`
   let moviesRequst= await axios.get(moviesURL)
-  this.setState({
+   await this.setState({
     movieaData:moviesRequst.data
     
   })
@@ -77,6 +77,9 @@ class App extends React.Component{
   render(){
     return(
       <>
+       <Movies
+    movies={this.state.movieaData}
+    />
       <br></br>
 
        <h1 style={{textAlign:'center'}}>City Explorer</h1>
@@ -153,6 +156,8 @@ table to render info to city */}
       )
 
     })}
+
+   
       </>
     )
   }
