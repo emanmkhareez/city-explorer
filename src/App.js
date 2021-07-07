@@ -51,9 +51,13 @@ class App extends React.Component{
 
 
   }
+  console.log('after location');
   //class7
   let weatherURl=`${process.env.REACT_APP_SERVER}/weather?cityName=${this.state.cityName}
+  
   `
+
+  console.log(weatherURl);
   let weatherRequst= await axios.get(weatherURl)
    await this.setState({
     weatherData:weatherRequst.data
@@ -67,7 +71,7 @@ class App extends React.Component{
     movieaData:moviesRequst.data
     
   })
-  console.log(this.state.movieaData);
+  console.log('addd',this.state.movieaData);
 
  }
  
@@ -77,9 +81,7 @@ class App extends React.Component{
   render(){
     return(
       <>
-       <Movies
-    movies={this.state.movieaData}
-    />
+      
       <br></br>
 
        <h1 style={{textAlign:'center'}}>City Explorer</h1>
@@ -157,6 +159,9 @@ table to render info to city */}
 
     })}
 
+ <Movies
+    movies={this.state.movieaData}
+    />
    
       </>
     )
