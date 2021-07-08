@@ -1,14 +1,12 @@
 import React from 'react'
-
+import WeatherDay from './WeatherDay'
 class  Weather extends React.Component{
     render(){
         return(
             <>
-          
-            <ul>
-            <li>{this.props.desc.date}</li>
-                <li>{this.props.desc.description}</li>
-            </ul>
+          <WeatherDay
+          data={this.props.desc}
+          />
 
             </>
         )

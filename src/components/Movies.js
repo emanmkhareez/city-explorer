@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Table from 'react-bootstrap/Table'
-
+import Movie from'./Movie'
 class Movies extends React.Component{
 
 
@@ -15,30 +15,14 @@ class Movies extends React.Component{
         
         return(
             <>
-            <div>movies</div>
-              {
-        this.props.movies.map(items=>{
-return(
-         
-    <Card style={{ width: '18rem' ,display:'inline-block' }}>
-  <Card.Img variant="top" src={items.image_url} />
-  <Card.Body>
-    <Card.Title>{items.title}</Card.Title>
-    <Card.Text>
-      <p>{items.overview}</p><br></br>
-      <p>{items.average_votes}</p><br></br>
-      <p>{items.total_votes}</p><br></br>
-      <p>{items.total_votes}</p><br></br>
-      <p>{items.popularity}</p><br></br>
-      <p>{items.released_on}</p><br></br>
 
-      
-    </Card.Text>
+            <Movie
+
+            dataMovie={this.props.movies}
+            />
+            <div>movies</div>
+              
     
-  </Card.Body>
-</Card>)
-        })
-    }
       
             </>
         )
