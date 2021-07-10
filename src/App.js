@@ -1,10 +1,12 @@
 
 import React from 'react'
 import axios from 'axios'//npm i axios
-
+import Movies from './components/Movies'
+import Weather from './components/Weather'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Table from 'react-bootstrap/Table'
-import {Form,Button} from 'react-bootstrap/'
+import {Form,Button, NavItem} from 'react-bootstrap/'
+
 
 class App extends React.Component{
   constructor(props){
@@ -14,7 +16,10 @@ class App extends React.Component{
       cityData:{},
       cityName:'',
       showMap:false,
-      errorMessage:false
+      errorMessage:false,
+      weatherData:[],
+      movieaData:[]
+
 
     }
   }
@@ -43,20 +48,45 @@ class App extends React.Component{
       errorMessage:true
     })
     
+    
+
 
   }
+  console.log('after location');
+  //class7
+  let weatherURl=`${process.env.REACT_APP_SERVER}weather?cityName=${this.state.cityName}
+  
+  `
+
+  console.log(weatherURl);
+  let weatherRequst= await axios.get(weatherURl)
+   await this.setState({
+    weatherData:weatherRequst.data
+  })
+  console.log(this.state.weatherData);
+  //class 8
+// http:localhost:3008/movies?city=Amman
+  let moviesURL=`${process.env.REACT_APP_SERVER}movies?city=${this.state.cityName}`
+  let moviesRequst= await axios.get(moviesURL)
+   await this.setState({
+    movieaData:moviesRequst.data
+    
+  })
+  console.log('addd',this.state.movieaData);
 
  }
+ 
 
 
  
   render(){
     return(
       <>
+      
       <br></br>
 
        <h1 style={{textAlign:'center'}}>City Explorer</h1>
-
+      
 {/* form to enter city  */}
 
        <Form onSubmit={this.getloc}>
@@ -71,7 +101,12 @@ class App extends React.Component{
   
 </Form>
 
+ 
+    
+    
+  
 
+  
 
 <br></br>
 <br></br>
@@ -103,15 +138,28 @@ table to render info to city */}
     </tr>
     
     
+    
   </tbody>
 </Table>
 {/* render map to the city */}
-{this.state.showMap&&<img alt='' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_Key}&center=${this.state.cityData.lat},${this.state.cityData.lon}`} style={{width:'400px',height:'400px'}} />
+{this.state.showMap&&
+<img alt='' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_Key}&center=${this.state.cityData.lat},${this.state.cityData.lon}`} style={{width:'400px',height:'400px'}} />
 }
 {this.state.errorMessage&&<div style={{color:'red'}}>Error in getting the data</div>}
 
 
+<Weather
+    
+    desc={this.state.weatherData}
 
+    
+    />
+
+       
+     
+ <Movies
+    movies={this.state.movieaData}
+    />
     
       </>
     )
