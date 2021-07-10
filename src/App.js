@@ -138,6 +138,7 @@ table to render info to city */}
     </tr>
     
     
+    
   </tbody>
 </Table>
 {/* render map to the city */}
