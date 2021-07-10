@@ -1,11 +1,11 @@
 
 import React from 'react'
 import axios from 'axios'//npm i axios
-import Movies from './Movies'
+import Movies from './component/Movies'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Table from 'react-bootstrap/Table'
 import {Form,Button, NavItem} from 'react-bootstrap/'
-import Weather from './Weather'
+import Weather from './component/Weather'
 
 class App extends React.Component{
   constructor(props){
