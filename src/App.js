@@ -1,12 +1,11 @@
 
 import React from 'react'
 import axios from 'axios'//npm i axios
-import Movies from './components/Movies'
-import Weather from './components/Weather'
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Table from 'react-bootstrap/Table'
 import {Form,Button, NavItem} from 'react-bootstrap/'
-
+import Weather from './component/Weather'
 
 class App extends React.Component{
   constructor(props){
@@ -14,7 +13,7 @@ class App extends React.Component{
 
     this.state={
       cityData:{},
-      cityName:'',
+       searchQuery:'',
       showMap:false,
       errorMessage:false,
       weatherData:[],
@@ -28,13 +27,13 @@ class App extends React.Component{
  getloc= async(e)=>{
    e.preventDefault()
     await this.setState({
-     cityName:e.target.city.value,
+      searchQuery:e.target.city.value,
      showMap:true
 
    })
-   console.log(this.state.cityName);
+   console.log(this.state. searchQuery);
 
-   try{let location=`https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_Key}&q=${this.state.cityName}&format=json`;
+   try{let location=`https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_Key}&q=${this.state.searchQuery}&format=json`;
 
     let  sendReq= await axios.get(location)
 
@@ -52,27 +51,15 @@ class App extends React.Component{
 
 
   }
-  console.log('after location');
   //class7
-  let weatherURl=`${process.env.REACT_APP_SERVER}weather?cityName=${this.state.cityName}
-  
+  let weatherURl=`${process.env.REACT_APP_SERVER}/weather?cityName=${this.state. searchQuery}
   `
-
-  console.log(weatherURl);
   let weatherRequst= await axios.get(weatherURl)
    await this.setState({
     weatherData:weatherRequst.data
   })
   console.log(this.state.weatherData);
-  //class 8
-// http:localhost:3008/movies?city=Amman
-  let moviesURL=`${process.env.REACT_APP_SERVER}movies?city=${this.state.cityName}`
-  let moviesRequst= await axios.get(moviesURL)
-   await this.setState({
-    movieaData:moviesRequst.data
-    
-  })
-  console.log('addd',this.state.movieaData);
+
 
  }
  
@@ -82,7 +69,7 @@ class App extends React.Component{
   render(){
     return(
       <>
-      
+   
       <br></br>
 
        <h1 style={{textAlign:'center'}}>City Explorer</h1>
@@ -138,29 +125,29 @@ table to render info to city */}
     </tr>
     
     
-    
   </tbody>
 </Table>
 {/* render map to the city */}
-{this.state.showMap&&
-<img alt='' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_Key}&center=${this.state.cityData.lat},${this.state.cityData.lon}`} style={{width:'400px',height:'400px'}} />
+{this.state.showMap&&<img alt='' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_Key}&center=${this.state.cityData.lat},${this.state.cityData.lon}`} style={{width:'400px',height:'400px'}} />
 }
 {this.state.errorMessage&&<div style={{color:'red'}}>Error in getting the data</div>}
 
 
-<Weather
-    
-    desc={this.state.weatherData}
 
+{
+    this.state.weatherData.map((item)=>{
+      return(
+        <Weather
     
-    />
+        desc={item}
+    
+        
+        />
+      )
 
-       
-     
- <Movies
-    movies={this.state.movieaData}
-    />
-    
+    })}
+
+   
       </>
     )
   }
