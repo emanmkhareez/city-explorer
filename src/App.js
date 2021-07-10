@@ -13,7 +13,7 @@ class App extends React.Component{
 
     this.state={
       cityData:{},
-      cityName:'',
+       searchQuery:'',
       showMap:false,
       errorMessage:false,
       weatherData:[],
@@ -27,13 +27,13 @@ class App extends React.Component{
  getloc= async(e)=>{
    e.preventDefault()
     await this.setState({
-     cityName:e.target.city.value,
+      searchQuery:e.target.city.value,
      showMap:true
 
    })
-   console.log(this.state.cityName);
+   console.log(this.state. searchQuery);
 
-   try{let location=`https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_Key}&q=${this.state.cityName}&format=json`;
+   try{let location=`https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_Key}&q=${this.state.searchQuery}&format=json`;
 
     let  sendReq= await axios.get(location)
 
@@ -52,22 +52,14 @@ class App extends React.Component{
 
   }
   //class7
-  let weatherURl=`${process.env.REACT_APP_SERVER}/weather?cityName=${this.state.cityName}
+  let weatherURl=`${process.env.REACT_APP_SERVER}/weather?cityName=${this.state. searchQuery}
   `
   let weatherRequst= await axios.get(weatherURl)
    await this.setState({
     weatherData:weatherRequst.data
   })
   console.log(this.state.weatherData);
-  //class 8
-// http:localhost:3008/movies?city=Amman
-  let moviesURL=`${process.env.REACT_APP_SERVER}/movies?city=${this.state.cityName}`
-  let moviesRequst= await axios.get(moviesURL)
-   await this.setState({
-    movieaData:moviesRequst.data
-    
-  })
-  console.log(this.state.movieaData);
+
 
  }
  
@@ -77,9 +69,7 @@ class App extends React.Component{
   render(){
     return(
       <>
-       <Movies
-    movies={this.state.movieaData}
-    />
+   
       <br></br>
 
        <h1 style={{textAlign:'center'}}>City Explorer</h1>
