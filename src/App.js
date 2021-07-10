@@ -64,8 +64,10 @@ class App extends React.Component{
     weatherData:weatherRequst.data
   })
   console.log(this.state.weatherData);
-  //class 8
+  //class 8 &
 // http:localhost:3008/movies?city=Amman
+
+
   let moviesURL=`${process.env.REACT_APP_SERVER}movies?city=${this.state.cityName}`
   let moviesRequst= await axios.get(moviesURL)
    await this.setState({
